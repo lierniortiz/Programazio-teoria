@@ -1,0 +1,7 @@
+site_name: Programazioa
+nav:
+  - HASIERA: index.md
+  - HTML: html.md
+  - CSS: css.md
+
+theme: readthedocs
