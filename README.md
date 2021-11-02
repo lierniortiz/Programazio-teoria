@@ -1,1 +1,3 @@
 # Programazio-teoria
+
+`mkdocs serve`
