@@ -167,6 +167,8 @@ Tres opciones:
 ## Iframes
 
 ...
+
+[GitHub-Iframes](https://github.com/lierniortiz/Programazio-teoria/blob/main/html/iframes.html)
 ## Formularios
 
 Necesidad de una comunicacion entre la página web y servidores. 
@@ -190,7 +192,7 @@ EJEMPLO
         <h2>Nuestro formulario</h2>
     
         <fieldset>
-            <legend>Aquí son tud datos de contacto:</legend>
+            <legend>Aquí son tus datos de contacto:</legend>
     
             <div>
                 <input id="formulario1_nombre" name="nombre" pattern="[A-Za-z0-9]+" required type="text" value="Pepe"
@@ -244,10 +246,6 @@ EJEMPLO
                         <option value="3" label="Opcion 3"> </option>
                     </optgroup>
                 </select>
-    
-    
-    
-    
             </div>
     
             <p></p>
@@ -255,8 +253,6 @@ EJEMPLO
             <div>
                 <input type="submit" value="Enviar formulario" />
             </div>
-    
-    
         </fieldset>
     
     
@@ -264,9 +260,74 @@ EJEMPLO
     </form>
 ```
 
-* `fieldset` (19:23)
+- `fieldset` Grupo de campos.
+- `legend` Legenda del fieldset.
+- `action` Hay que enviar los datos del formulario a un servidor. 
+
+### Atrubutos de los campos
+
+Los campos de un formulario empiezan siempre como `<input type=" ">`
+
+- `id`
+- `name`
+- `type` (ver tipos de campos)
+- `value` Valor por defecto
+- `placeholder` Indica que hay que escribir en ese campo
+- `required` Para validar que el campo esté lleno en el lado cliente. Tiene sus problemas, hay que hacerlo en el servidor también. 
+- `pattern` Para validar un patrón. Por ejemplo, solo números y letras. Tiene sus problemas, hay que hacerlo en el servidor también.
+
+### Tipos de campos (`type`)
+
+- BOTÓN. `type = "submit"`
+- TEXTO. `type = "text"`
+    * `type = "tel"` Teléfono. (Hay que especificar que tipo de teléfono)
+    * `type = "url"` URL
+    * `type = "email"` Email, con arroba
+    * `type = "password"` Contraseña. Aparecerán     puntitos al escribir. 
+    * `type = "textarea"` Mucho texto.
+- NÚMEROS.
+    * `type = "number"` Campos numéricos. Tiene como atributo `min`, `max` y `step`. 
+    * `type = "range"` Slider. 
+- FECHA Y HORA. 
+    * `type = "date"` 
+    * `type = "time"`
+    * `type = "datetime-local"` 
+- CASILLAS DE VERIFICACIÓN. 
+    * `type = "radio"` Solo se marca una de ellas.
+    * `type = "checkbox"` Todas las que queramos.
+- LISTAS. 
+    
+```
+<select name="combo">
+    <optgroup label="Opciones básicas">
+        <option value="1" label="Opcion 1"> </option>
+    </optgroup>    
+    <optgroup label="Opciones avanzadas">
+        <option value="2" label="Opcion 2"> </option>
+        <option value="3" label="Opcion 3"> </option>
+    </optgroup>
+</select>
+```
+    
+- ARCHIVOS. 
+    * `input type="file"`
+    * Hay que poner en el formulario enctype="multipart/form-data
+- OCULTO. `type = "hidden"` No se ve. Es muy utilizado. Envía información que no corresponde llenar al usuario. Datos necesarios como el número id de una campaña. 
+
+### Seguridad
+Cuidado con los datos recogidos. Siempre hay que pasarlos por una validación de servidor. Si no se hiciera así, el hacker puede cambiar el destino de los datos y utilizar el formulario para recoger los datos en un sitio que no le correspondía. 
+
 
 
 ## Tablas
 
-Bastante en desuso porque es difícil para el responsive. 
+Bastante en desuso porque es difícil para el responsive. Utilizar si necesitamos muchos datos ordenados. 
+
+... 
+
+[GitHub-Tablas](https://github.com/lierniortiz/Programazio-teoria/blob/main/html/tabla.html)
+
+[GitHub-Tabla modelo](https://github.com/lierniortiz/Programazio-teoria/blob/main/html/tabla-modelo.html)
+
+## Imágenes
+
