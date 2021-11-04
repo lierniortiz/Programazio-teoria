@@ -331,3 +331,52 @@ Bastante en desuso porque es difícil para el responsive. Utilizar si necesitamo
 
 ## Imágenes
 
+Es un recurso, un `src`.
+
+Cuidado con las licencias. En pixabay hay que ver que tengan licencia pixabay. No porque sea gratis significa que sea gratuita la licencia comercial. Además, hay que intentar utilizar el tamaño más pequeño posible. 
+
+PIXLR es un buen editor de fotos. Es facil cambiar el tamaño de la foto al que queramos. `Imagen > Tamaño de imagen`. Luego tenemos en cuenta a cuanto lo hemos cambiado para meter esos datos en el elemento como se muestra a continuación. 
+
+```
+<img src="dog-gc4b1be3a9_1920.jpg"
+        alt="Es una imagen de un perrito" width="400" height="453" />
+```
+ * `img` No tiene cierre. 
+ * `src` Dónde está la imagen.
+ * `alt` Lo que aparece si la imagen no se carga.
+ * `width` y `height` Aunque luego cambiemos esto con CSS conviene meter estos datos. 
+
+ TIPOS:
+
+ * PNG
+ * JPG
+ * SVG
+ * GIF. Intentar evitar
+ * WEBP. Alternativa libre de Google al JPEG.
+
+### Iconos
+ [Librería de iconos google](https://fonts.google.com/icons)
+
+ Si abrimos un icono y lo descargamos en SVG. Lo podemos abrir con chrome y `ver codigo fuente de la pagina`. De ahí podremos conseguir lo que hay que escribir en el HTML para ver ese icono. 
+
+ Después podremos jugar con su estilo con `fill: red` por ejemplo.
+
+### Responsive con `<picture>`
+
+```
+<picture>
+    <source media="(min-width: 300px) and (max-width: 600px)" srcset="dog-gc4b1be3a9_1920.webp" />
+    
+    <img src="dog-gc4b1be3a9_1920.jpg" alt="HTML5 logo" />
+</picture>
+```
+
+Si la pantalla es entre 300px y 600px se pondrá la primera imagen (la que esta en media), sino la segunda. 
+
+## Video y audio
+
+[GitHub-Audio](https://github.com/lierniortiz/Programazio-teoria/blob/main/html/audio.html)
+
+[GitHub-Video](https://github.com/lierniortiz/Programazio-teoria/blob/main/html/video.html)
+
+ 
