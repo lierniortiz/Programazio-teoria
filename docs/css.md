@@ -563,4 +563,99 @@ input#password {
 }
 ```
 
-## Boostrap
+## Bootstrap
+Es un framework (un conjunto estandarizado de conceptos, prácticas y criterios para enfocar un tipo de problemática) para trabajar estilos en CSS y JS. Actualmente vamos por la versión 5. Sirve para cosas que se mueven: acordeones, carruseles, diseños adaptativos... Pero también para dar estilos de forma estandarizada y sencilla.
+
+En su página podemos ver todos los estilos de diferentes elementos y cómo utilizarlos: [bootstrap.com](https://getbootstrap.com)
+
+Se puede instalar con un modulo de NodeJS.
+
+De momento lo haremos con el código que ellos nos dan en [bootstrap.com](https://getbootstrap.com/docs/5.1/getting-started/introduction/):
+
+```
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
+```
+
+Trabajando más con cdn-s vamos a "robar" el estilo de la página de booststrap misma. Para ello iremos a [layout > grid](https://getbootstrap.com/docs/5.1/layout/grid/), inspeccionamos el código de las tres columnas y vemos que el estilo de eso está en una hoja de estilo que se llama `docs.css`. Clicamos encima con el botón derecho y `Open in new tab`. Podemos copiar todo el texto y crear una hoja de estilos nueva con ese texto. 
+
+### Ejemplo de grid
+
+```
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="css/docs2.css" rel="stylesheet" type="text/css">
+
+    <title>Hello, world!</title>
+  </head>
+  
+  <body>
+    <h1>Hello, world!</h1>
+
+
+<!-- responsive clases-->
+
+     <div class="bd-example bd-example-row">
+        <div class="container">
+            <div class="row">   
+              <div class="col-sm-4">col-sm-6</div>
+              <div class="col-sm-8">col-sm-6</div>
+            </div>
+            <div class="row">
+              <div class="col-sm">col-sm</div>
+              <div class="col-sm">col-sm</div>
+              <div class="col-sm">col-sm</div>
+            </div>
+    </div>
+
+```
+
+Con las dos hojas de estilo que nos hemos traído antes, la de bootstrap y la "robada", si ahora escribimos eso ya nos aparece con estilo dado. Hay que saberse el nombre de las clases, por ejemplo en estas `col-sm-4` y `col-sm-8` entre las dos tiene que sumar 12 (podía ser 6 y 6) tal y como podemos ver en el apartado "Grid options" de la [página de booststrap](https://getbootstrap.com/docs/5.1/layout/grid/). Estas columnas que hemos creado se irán comportando de una forma u otra según los px del dispositivo. 
+
+## Animaciones
+
+Una librería para animaciones: [animate.style](https://animate.style/)
+
+Al igual que con booststrap también hay que cargar la biblioteca de animate como se dice en la web. Se puede con `npm`, pero también se puede cargar añadiendo el cdn al documento html:
+```
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+
+```
+
+En la página web hay un menú con todas las animaciones posibles y cómo usarlas. 
