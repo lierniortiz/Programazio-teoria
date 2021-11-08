@@ -137,6 +137,13 @@ De esta forma no tenemos que identificar el párrafo uno a uno. Nos ahorra etiqu
 ```
 Cuando pasemos por encima con el ratón, el `div1` se convertirá azul y se nos pondrá la manita en vez de la flechita.
 
+```
+.div1:focus{
+    color: blue;
+    cursor: pointer;
+}
+```
+
 ### Agrupar selectores
 
 ```
@@ -659,3 +666,300 @@ Al igual que con booststrap también hay que cargar la biblioteca de animate com
 ```
 
 En la página web hay un menú con todas las animaciones posibles y cómo usarlas. 
+
+También se puede acudir a [w3schoow](https://www.w3schools.com/css/css3_animations.asp)
+
+Siempre tienen un elemento de partida y un elemento de destino. Además entre elementos podemos poner hitos intermedios (en porcentajes). Ejemplo: 
+
+```
+/*
+animation-name
+animation-duration
+animation-delay
+animation-iteration-count
+animation-direction
+animation-timing-function
+animation-fill-mode
+*/
+
+.midiv:hover, .midiv.active {
+    animation-name: ejemplo2;
+    animation-duration: 1s;
+    animation-timing-function:ease-in;
+    animation-fill-mode:forwards;
+    animation-iteration-count:infinite;
+}
+
+
+  @keyframes ejemplo2 {
+    10% {
+        background-color: red;
+        transform: rotate(0deg);}
+    50% {background-color: yellow;
+        transform: rotate(45deg);}
+    100% {background-color: rgb(10, 10, 1);
+        transform: rotate(180deg);}
+  }
+```
+
+### Transiciones
+
+Nuestro objetivo es que no haya transiciones bruscas. Por ejemplo, cuando ponemos el ratón encima de un botón y que cambie de color, que este cambio no sea brusco.
+
+Hoja de referencia de [w3school](https://www.w3schools.com/css/css3_transitions.asp) donde se dicen los estándares.
+
+```
+HTML
+-----------------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="css/transiciones.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="contenedor">
+    <button class="btn">Mi transición</button>
+    <div class="midiv"></div>
+</div>
+
+</body>
+</html>
+```
+
+```
+CSS
+-------------------------------------------------------------
+
+.contenedor {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button.btn {
+    height: 50px;
+    border:0;
+    width: 300px;
+    background-color: blue;
+    color: white;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    transition-duration: 3s;
+    transition-delay:1s;
+    transition-timing-function: ease;
+    transition-property:all;
+    transition: all 2s ease 1s;
+  
+}
+
+button.btn:hover {
+    background-color: tomato;
+    color:black;
+    transform: translate(100px);
+    cursor:pointer;
+    transition: all 2s ease;
+}
+
+.midiv {
+    height: 160px;
+    background-color: black;
+    width: 290px;
+    margin-top: 30px;
+    transition: all 1s ease-in;
+}
+
+.midiv:hover, .midiv.active {
+    transition: all 1s ease-out;
+    transform: matrix(1, -0.2, 0, 1, 0, 0);
+    background-color: blueviolet;
+    height: 300px;
+    width: 500px;
+}
+
+```
+
+- `transition` es la que nos ayuda en la transición. Fijarse en que tenemos la transición en el botón y en el `:hover`
+    * `transition: all`
+    * `transition: background-color`
+    * `transition-delay`
+    * `transition-duration`
+    * `transition-timing-function`
+    * ... ver más en el [link](https://www.w3schools.com/css/css3_transitions.asp). 
+
+* También podemos hacer transiciones con los div. 
+* Combinamos las clases `:hover` y `active` para que los dos tengan la misma animación. 
+* Podemos ver curvas de animación en: [easings.net](https://easings.net/). 
+
+### Elementos que aparecen y desaparecen
+
+Queremos simular mediante una transiciones que aparezcan o desaparezcas elementos. Por ejemplo el menú.
+
+```
+.menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all 2s ease-out;
+}
+
+.menu.active {
+    opacity: 1;
+    visibility:visible;
+    transition: all 2s ease-in;
+}
+```
+
+Hemos especificado que el menú por defecto es `hidden` y `opacity: 0;`. Si la clase se vuelve active tenemos `opacity: 1;` y  `visibility:visible;`. El cambio de añadir una nueva clase se hará desde javascript. Es la forma de enseñar elementos que están ocultos en la web. 
+
+### Ejemplo de spinner
+Podemos convinar animaciones y transiciones. Ejemplo de spinner:
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/rotando.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <div class="contenedor">
+     <svg class="misvg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg> 
+    </div>
+</body>
+</html>
+```
+
+```
+.contenedor {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.misvg {
+    height: 50px;
+    width: 50px;
+    fill: #333;
+    opacity: 0;
+    visibility: hidden; 
+    transition: all 0.5s ease-in;
+}
+
+.misvg.active {
+    animation-name: rotando;
+    animation-duration: 1s;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+    opacity: 1;
+    visibility:visible;
+    transition: all 2s ease-in;
+}
+
+  @keyframes rotando {
+    for {
+        fill: #333;
+        transform: rotate(0deg);}
+    50% {fill: #999;}
+    100% {fill: #333;
+        transform: rotate(180deg);}
+  }
+
+```
+
+### Ejemplos de animaciones
+
+* [Ejemplo1-rata](https://codepen.io/psyloute/pen/mdmEYqq)
+* [Ejemplo2-botones que se mueven](https://codepen.io/sanketbodke/pen/LYymbRq)
+* [Ejemplo3-spinner](https://codepen.io/tigercodes/pen/ExXJvGJ)
+* [Ejemplo4-desplazamientos](https://codepen.io/AKGD/pen/yvwQYZ)
+* Tooltips
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/tooltips.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="contenedor">
+        <p>Lorem ipsum dolor sit <span class="tooltip" data-info="Este es el texto del tooltip">ábreme el tooltip</span> amet consectetur adipisicing elit. Est explicabo fugit quos, a voluptas animi laudantium consequatur voluptatibus magnam sed reprehenderit aliquam, cupiditate commodi non nihil accusantium, tempore molestias quod?</p>
+    </div>
+</body>
+</html>
+```
+```
+.contenedor {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+    padding: 100px;
+}
+
+span.tooltip::before {
+    display: none; /* Lo ocultamos*/
+    content: attr(data-info);
+    color: white;
+    font-size: 0.8em;
+    padding: 2px 8px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 5px;
+    position: absolute; /* Lo posicionamos de modo absoluto dentro del span */
+    top: 1.5em;
+    left: 5px;
+    min-width: 500px;
+    z-index: 999;
+}
+
+span.tooltip:hover::before {
+    display: block;
+}
+
+span{
+    position: relative;
+    font-weight: 700;
+    background-color: yellow;
+    cursor: pointer;
+}
+
+```
