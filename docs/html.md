@@ -121,6 +121,7 @@ Un elemento puede tener muchos atributos.
 * `style`
 * `href`
 * `dir`
+* `span` Es siempre en línea. Es para textos normalmente (?)
 
 ### Valores
 Tres opciones:
