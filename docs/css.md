@@ -153,6 +153,27 @@ h1, h2, p {
 
 ```
 
+## Variables
+
+Tenemos dos: locales y globales. En CSS los que tienen sentido son los globales.
+
+```
+
+:root {
+    --color-de-fondo: rgb(240, 29, 152);
+}
+
+.contenedor {
+    background-color: var(--color-de-fondo);
+}
+.contenedor2 {
+    background-color: var(--color-de-fondo);
+}
+```
+
+Guardamos en memoria (en root) una variable llamada `--color-de-fondo` y luego la utilizamos todas las veces que queramos.
+
+
 ## Especifidad
 
 No siempre hay cascada porque hay una jerarquía entre elementos, una especifidad. El estilo de algunos elementos tendrá más importancia que otros independientemente al orden en el que están.
@@ -278,6 +299,49 @@ Si queremos cajas ordenadas de forma simetrica, o de arriba abajo, o con ciertas
 Con darle `display: flex` al contenedor los elementos hijos de ese contenedor se colocarán de la forma que decida el navegador. Es muy fácil utilizar esto por que responden muy bien al responsive. Suele mantener el espacio máximo del contenedor a no ser que estemos en otro dispositivo donde necesitan ser más pequeñitos.
 
 Los navegadores están adecuandose a esto y dando facilidades para ello. Si vamos al inspector en styles aparece un iconito al lado de `flex` y se pueden cambiar las propiedades desde ahí.
+
+Ejemplo:
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/flex-box.css">
+</head>
+<body>
+        <div class="flex-container">
+            <div class="felx-item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo excepturi quia maxime, recusandae nam doloremque laudantium error qui consectetur rem? Qui itaque esse minima beatae, soluta corporis minus porro!</div>
+            <div class="felx-item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo excepturi quia maxime, recusandae nam doloremque laudantium error qui consectetur rem? Qui itaque esse minima beatae, soluta corporis minus porro!</div>
+            <div class="felx-item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo excepturi quia maxime, recusandae nam doloremque laudantium error qui consectetur rem? Qui itaque esse minima beatae, soluta corporis minus porro!</div>
+            <div class="felx-item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo excepturi quia maxime, recusandae nam doloremque laudantium error qui consectetur rem? Qui itaque esse minima beatae, soluta corporis minus porro!</div>
+            <div class="felx-item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo excepturi quia maxime, recusandae nam doloremque laudantium error qui consectetur rem? Qui itaque esse minima beatae, soluta corporis minus porro!</div>
+         </div>
+    
+</body>
+</html>
+```
+
+```
+.flex-container {
+    display: flex;
+}
+
+.felx-item {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    justify-content: center;
+}
+```
+
+Le tenemos que poner `width` y `height` para que nos aplique las propiedades al alinear. Es decir, tenemos que alinear los elementos dentro de un contenedor al que le hemos dado medidas. 
 
 ## Galería de imágenes
 
@@ -611,7 +675,144 @@ De momento lo haremos con el código que ellos nos dan en [bootstrap.com](https:
 
 Trabajando más con cdn-s vamos a "robar" el estilo de la página de booststrap misma. Para ello iremos a [layout > grid](https://getbootstrap.com/docs/5.1/layout/grid/), inspeccionamos el código de las tres columnas y vemos que el estilo de eso está en una hoja de estilo que se llama `docs.css`. Clicamos encima con el botón derecho y `Open in new tab`. Podemos copiar todo el texto y crear una hoja de estilos nueva con ese texto. 
 
-### Ejemplo de grid
+### Responsive
+Hay que ir jugando con los tamaños que nos proporciona bootstrap, metiendo estos datos en las clases.
+
+* Extra-small. `.col-`
+* Small. `.col-sm-`
+* Medium. `.col-md-`
+* Large. `.col-lg-`
+* Extra-large. `.col-xl-`
+				
+
+### Grid
+
+Es una red, una manera de ordenar elementos como queramos dentro de un contenedor. Es responsive.
+Ver documentación [aquí](https://getbootstrap.com/docs/4.0/layout/grid/)
+
+**EJEMPLO 0 (con bootstrap)**
+
+```
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/docs.css">
+    <link rel="stylesheet" href="css/bootstra-grid.css">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+   
+<!--
+	xs<576px	
+    sm≥576px	
+    md≥768px	
+    lg≥992px	
+    xl≥1200px	
+    xxl≥1400px
+-->
+<div class="bd-example bd-example-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-xl-2 d-flex justify-content-center ">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut nemo ipsum sequi! A aperiam totam ea praesentium voluptate eveniet minus, nobis deleniti vero id accusantium possimus repellendus quidem aliquam qui?</p>
+            </div>
+            <div class="col col-lg-4 col-xl-2 d-flex justify-content-center ">
+                <div class="card" style="width: 18rem;">
+                <img src="spaghetti.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
+            <div class="col d-none d-sm-none d-md-flex col-lg-4 col-xl-2 bg-primary d-flex justify-content-center  ">   <div class="card" style="width: 18rem;">
+                <img src="spaghetti.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
+            <div class="col d-none col-lg-4 col-xl-2 d-sm-none d-lg-flex d-flex justify-content-center ">   <div class="card" style="width: 18rem;">
+                <img src="spaghetti.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
+            
+            <div class="col-12 d-xl-none d-flex text-center  justify-content-center">
+                Mucho más contenido en.....
+            </div>
+
+            <div class="col-xl-2 d-none d-sm-none d-xl-flex d-flex justify-content-center ">   <div class="card" style="width: 18rem;">
+                <img src="spaghetti.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-xl-2  d-none d-xl-flex d-flex justify-content-center ">   <div class="card" style="width: 18rem;">
+                <img src="spaghetti.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-12 text-center justify-content-center">
+                <button type="button" class="btn btn-success">More info...</button>
+            </div>
+        </div>  
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+```
+
+Los dos documentos CSS que hemos cargado son:
+
+ * [GitHub-docs.css](https://github.com/lierniortiz/Programazio-teoria/blob/main/css/docs.css)
+ * [GitHub-bootstra-grid.css](https://github.com/lierniortiz/Programazio-teoria/blob/main/css/bootstra-grid.css)
+
+Explicación del ejemplo:
+
+ - El grid de bootstrap tiene siempre 12 subdivisiones.
+ - Primero configuramos el grid para pantalla muy grande (xl):
+    * `class="col-xl-2 d-flex justify-content-center "` Vemos que es para xl. Como queremos tener 6 columnas en pantalla grande decimos que cada una mide 2: `col-xl-2`
+    * Ponemos esta clase a todos los que queramos que salgan en pantalla grande. 
+    * El último div como queramos que salga ocupando toda la horizontal le ponemos: `col-xl-12`
+    * Para que tenga un contenido `flex` dentro del contenedor es obligatorio `d-flex justify-content-center`
+    * Si queremos diferenciar las cajas las unas de las otras podemos dareles colores añadiendo a la clase `bg-primary`, `bg-succes`...
+ - Ahora le tenemos que decir qué hacer cuando la pantalla sea grande (lg):
+    * Como no queremos que las dos últimas cajas se vean cuando la pantalla se hace más pequeña, cambiamos la clase de estas a `d-none d-xl-flex d-flex justify-content-center`. De esta forma por defecto tenemos display none, pero cuando la pantalla se hace xl, display flex.
+    * Además cuando la cantidad de cajas es menor a la que tenemos en la pantalla grande, queremos que aparezca: `más contenido en...`. Para ello en el div que contiene esta información añadimos la clase `col-12 d-xl-none d-flex text-center  justify-content-center`. Con esto le estamos diciendo que aparezca siempre ocupando todo el ancho (12) excepto en la pantalla grande.
+    * Queremos que sean 3 cajas las que se vean, por tanto, cada una tiene que tener tamaño 4 cuando estemos en este tamaño. `col d-none d-sm-none d-md-flex col-lg-4 col-xl-2 bg-primary d-flex justify-content-center`
+- Cuando la pantalla sea pequeña (sm):
+    * Queremos que solo se vean las 2 primeras cajas...
+    * ...
+
+
+
+
+**EJEMPLO 1 (con bootstrap)**:
 
 ```
 <html lang="es">
@@ -649,6 +850,70 @@ Trabajando más con cdn-s vamos a "robar" el estilo de la página de booststrap 
 ```
 
 Con las dos hojas de estilo que nos hemos traído antes, la de bootstrap y la "robada", si ahora escribimos eso ya nos aparece con estilo dado. Hay que saberse el nombre de las clases, por ejemplo en estas `col-sm-4` y `col-sm-8` entre las dos tiene que sumar 12 (podía ser 6 y 6) tal y como podemos ver en el apartado "Grid options" de la [página de booststrap](https://getbootstrap.com/docs/5.1/layout/grid/). Estas columnas que hemos creado se irán comportando de una forma u otra según los px del dispositivo. 
+
+EJEMPLO 2 (sin booststrap):
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/grid.css">
+</head>
+<body>
+
+    <div class="grid-container">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>  
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>  
+        <div class="grid-item">7</div>
+        <div class="grid-item">8</div>
+       
+      </div>
+      
+
+</body>
+</html>
+```
+```
+.grid-container {
+    display: grid; 
+    grid-template-columns: auto auto auto auto;
+    background-color: hsl(207, 90%, 54%);
+    padding: 10px;
+    grid-gap: 10px;   
+  }
+  
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+  }
+
+  .grid-item:first-child {
+    background-color: brown;
+    grid-column: 1/3;
+    grid-row: 1/3;
+  }
+
+  .grid-item:nth-child(2) {
+    background-color: rgb(97, 165, 42);
+    grid-row: 1/3;}
+
+  .grid-item:nth-child(6) {
+    background-color: rgb(97, 165, 42);
+    grid-column: 2/4;
+
+  }
+
+
+```
 
 ## Animaciones
 
@@ -963,3 +1228,141 @@ span{
 }
 
 ```
+
+## Responsive
+
+El diseño responsive es aquel que se adapta a todos los dispositivos.
+
+Está explicado [aquí](https://www.campusmvp.es/recursos/post/desarrollo-web-movil-que-diferencia-existe-entre-el-viewport-y-la-resolucion-de-pantalla-de-un-dispositivo.aspx)
+
+Ponemos la etiqueta html:
+```
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+Dos maneras de programar responsive: mobile first o destokp first. Ultimamente se están haciendo mobile first y luego adaptarlas a ordenador. 
+
+### Medidas
+
+Dos tipos: relativas o fijas. 
+
+- Fijas: 
+    * **px**. En los móviles de nueva generación hay más densidad de pixeles. Entonces lo que vale 2px en un portatil, en una tablet de doble densidad vale 1px. Por lo tanto se puede considerar relativa. ES LO MÁS UTILIZADO
+    * **cm**
+    * **mm**
+    * **pt**
+
+- Relativas:
+    * **%**: tamaños respecto al contenedor
+    * **vh** (viewport-heigh): Se utiliza sobre todo para altura de contenedores. Tamaños respecto al área de visualización.
+    * **vw** (viewport-with):  Se utiliza sobre todo para anchura de contenedores. Tamaños respecto al área de visualización. se utiliza mucho en menús laterales.
+    * **em**: Por defecto 1 em son 16px del navegador. Pero en verdad es una referencia al padre. Si un parrafo está contenido en un container que tiene especificado `font-size:30px` y especificamos que el párrafo tiene `2em`, entonces la letra del párrafo tendrá 60px.
+    * **rem**: 1em=16px, independientemente del padre.
+
+### Media queries
+Son instrucciones que se ponen en lso archivos CSS para decirle que dependiendo el ancho o alto del dispositivo, haga una cosa u otra. También dependiendo si lo está enseñado en horizontal o vertical. Tenemos los operadores AND y OR en media query. 
+
+Ejemplo de condiciones:
+```
+/* mobile first */
+
+.responsive{
+    background-color: brown;
+    width: 100%;
+    height: 300px;
+}
+
+@media screen AND (min-width:800px){
+    .responsive{
+        background-color: green;
+        width: 700px;
+    }
+}
+
+/* desktop first */
+
+.responsive{
+    background-color: brown;
+    width: 700px;
+    height: 300px;
+}
+
+/*
+@media screen AND (max-width:800px){
+    .responsive{
+        background-color: green;
+        width: 100%;
+    }
+}*/
+```
+
+### Flexbox
+(ver apartado flexbox en posiciones)
+
+### Grid
+Tener en cuenta que en grids las lineas y las columnas no son las cajas, son los separadores. Primero hay que dibujar lo que queremos y luego aplicarlo, ya que tenemos que ir diciendo cada vez cuantas líneas y cuantas columnas queremos que nos vaya cogiendo cada caja.
+
+EJEMPLO (sin booststrap):
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/grid.css">
+</head>
+<body>
+
+    <div class="grid-container">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>  
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>  
+        <div class="grid-item">7</div>
+        <div class="grid-item">8</div>
+       
+      </div>
+      
+
+</body>
+</html>
+```
+```
+.grid-container {
+    display: grid; 
+    grid-template-columns: auto auto auto auto;
+    background-color: hsl(207, 90%, 54%);
+    padding: 10px;
+    grid-gap: 10px;   
+  }
+  
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+  }
+
+  .grid-item:first-child {
+    background-color: brown;
+    grid-column: 1/3;
+    grid-row: 1/3;
+  }
+
+  .grid-item:nth-child(2) {
+    background-color: rgb(97, 165, 42);
+    grid-row: 1/3;}
+
+  .grid-item:nth-child(6) {
+    background-color: rgb(97, 165, 42);
+    grid-column: 2/4;
+
+  }
+
+
+```
+
